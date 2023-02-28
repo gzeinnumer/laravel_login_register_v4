@@ -1,5 +1,7 @@
 # laravel_login_register_v4
 
+https://codeanddeploy.com/blog/laravel/laravel-8-authentication-login-and-registration-with-username-or-email
+
 #### Step 1: Create Laravel App
 
 ```
@@ -21,7 +23,7 @@ DB_USERNAME=your_db_username
 DB_PASSWORD=your_db_password
 ```
 
-```
+```php
 Schema::create('users', function (Blueprint $table) {
    $table->id();
    $table->string('name')->nullable();
@@ -36,7 +38,7 @@ Schema::create('users', function (Blueprint $table) {
 
 #### Step 3: Setup Model
 
-```
+```php
 /**
  * The attributes that are mass assignable.
  *
@@ -50,7 +52,7 @@ protected $fillable = [
 ];
 ```
 
-```
+```php
 /**
  * Always encrypt the password when it is updated.
  *
@@ -69,7 +71,7 @@ public function setPasswordAttribute($value)
 php artisan make:controller RegisterController
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -114,7 +116,7 @@ class RegisterController extends Controller
 php artisan make:request RegisterRequest
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Requests;
@@ -156,7 +158,7 @@ class RegisterRequest extends FormRequest
 php artisan make:controller LoginController
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -221,7 +223,7 @@ class LoginController extends Controller
 php artisan make:request LoginRequest
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Requests;
@@ -303,7 +305,7 @@ class LoginRequest extends FormRequest
 php artisan make:controller LogoutController
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -336,7 +338,7 @@ class LogoutController extends Controller
 php artisan make:controller HomeController
 ```
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -354,7 +356,7 @@ class HomeController extends Controller
 
 #### Step 10: Setup Routes
 
-```
+```php
 <?php
 
 use App\Http\Controllers\HomeController;
@@ -394,140 +396,172 @@ Route::group(['middleware' => ['auth']], function () {
 
 -   ` resources/views/``layouts/auth-master.blade.php  `
 
-```
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta
+            name="author"
+            content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+        />
+        <meta name="generator" content="Hugo 0.87.0" />
+        <title>Signin Template · Bootstrap v5.1</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.87.0">
-    <title>Signin Template · Bootstrap v5.1</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous"
+        />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
             }
-        }
-    </style>
 
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
 
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-</head>
+        <!-- Custom styles for this template -->
+        <link href="signin.css" rel="stylesheet" />
+    </head>
 
-<body class="text-center">
-
-    <main class="form-signin">
-
-        @yield('content')
-
-    </main>
-
-
-</body>
-
+    <body class="text-center">
+        <main class="form-signin">@yield('content')</main>
+    </body>
 </html>
 ```
 
 -   ` resources/views/``layouts/app-master.blade.php `
 
-```
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta
+            name="author"
+            content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+        />
+        <meta name="generator" content="Hugo 0.87.0" />
+        <title>Fixed top navbar example · Bootstrap v5.1</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.87.0">
-    <title>Fixed top navbar example · Bootstrap v5.1</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+            crossorigin="anonymous"
+        />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
             }
-        }
-    </style>
 
-</head>
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+    </head>
 
-<body>
+    <body>
+        @include('layouts.partials.navbar')
 
-    @include('layouts.partials.navbar')
+        <main class="container">@yield('content')</main>
 
-    <main class="container">
-        @yield('content')
-    </main>
-
-    <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
-
-</body>
-
+        <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
+    </body>
 </html>
 ```
 
 -   ` resources/views/``layouts/partials/navbar.blade.php `
 
-```
+```html
 <header class="p-3 bg-dark text-white">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+        <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+            <a
+                href="/"
+                class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+            >
+                <svg
+                    class="bi me-2"
+                    width="40"
+                    height="32"
+                    role="img"
+                    aria-label="Bootstrap"
+                >
                     <use xlink:href="#bootstrap" />
                 </svg>
             </a>
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+            <ul
+                class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+            >
+                <li>
+                    <a href="#" class="nav-link px-2 text-secondary">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">Features</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-white">Pricing</a>
+                </li>
                 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                <input
+                    type="search"
+                    class="form-control form-control-dark"
+                    placeholder="Search..."
+                    aria-label="Search"
+                />
             </form>
 
-            @auth
-                {{ auth()->user()->name }}
-                <div class="text-end">
-                    <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
-                </div>
-            @endauth
-
-            @guest
-                <div class="text-end">
-                    <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
-                    <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
-                </div>
+            @auth {{ auth()->user()->name }}
+            <div class="text-end">
+                <a
+                    href="{{ route('logout.perform') }}"
+                    class="btn btn-outline-light me-2"
+                    >Logout</a
+                >
+            </div>
+            @endauth @guest
+            <div class="text-end">
+                <a
+                    href="{{ route('login.perform') }}"
+                    class="btn btn-outline-light me-2"
+                    >Login</a
+                >
+                <a
+                    href="{{ route('register.perform') }}"
+                    class="btn btn-warning"
+                    >Sign-up</a
+                >
+            </div>
             @endguest
         </div>
     </div>
@@ -536,150 +570,208 @@ Route::group(['middleware' => ['auth']], function () {
 
 -   ` resources/views/``layouts/partials/messages.blade.php `
 
-```
+```html
 @if (isset($errors) && count($errors) > 0)
-    <div class="alert alert-warning" role="alert">
-        <ul class="list-unstyled mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-@if (Session::get('success', false))
-    <?php $data = Session::get('success'); ?>
-    @if (is_array($data))
-        @foreach ($data as $msg)
-            <div class="alert alert-warning" role="alert">
-                <i class="fa fa-check"></i>
-                {{ $msg }}
-            </div>
+<div class="alert alert-warning" role="alert">
+    <ul class="list-unstyled mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
         @endforeach
-    @else
-        <div class="alert alert-warning" role="alert">
-            <i class="fa fa-check"></i>
-            {{ $data }}
-        </div>
-    @endif
-@endif
-
+    </ul>
+</div>
+@endif @if (Session::get('success', false))
+<?php $data = Session::get('success'); ?>
+@if (is_array($data)) @foreach ($data as $msg)
+<div class="alert alert-warning" role="alert">
+    <i class="fa fa-check"></i>
+    {{ $msg }}
+</div>
+@endforeach @else
+<div class="alert alert-warning" role="alert">
+    <i class="fa fa-check"></i>
+    {{ $data }}
+</div>
+@endif @endif
 ```
 
 -   ` resources/views/``auth/register.blade.php `
 
-```
-@extends('layouts.auth-master')
+```html
+@extends('layouts.auth-master') @section('content')
+<form method="post" action="{{ route('register.perform') }}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+    <img
+        class="mb-4"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png"
+        alt=""
+        width="72"
+        height="57"
+    />
 
-@section('content')
-    <form method="post" action="{{ route('register.perform') }}">
+    <h1 class="h3 mb-3 fw-normal">Register</h1>
 
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png" alt="" width="72" height="57">
+    <div class="form-group form-floating mb-3">
+        <input
+            type="email"
+            class="form-control"
+            name="email"
+            value="{{ old('email') }}"
+            placeholder="name@example.com"
+            required="required"
+            autofocus
+        />
+        <label for="floatingEmail">Email address</label>
+        @if ($errors->has('email'))
+        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+        @endif
+    </div>
 
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
+    <div class="form-group form-floating mb-3">
+        <input
+            type="text"
+            class="form-control"
+            name="username"
+            value="{{ old('username') }}"
+            placeholder="Username"
+            required="required"
+            autofocus
+        />
+        <label for="floatingName">Username</label>
+        @if ($errors->has('username'))
+        <span class="text-danger text-left"
+            >{{ $errors->first('username') }}</span
+        >
+        @endif
+    </div>
 
-        <div class="form-group form-floating mb-3">
-            <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="name@example.com" required="required" autofocus>
-            <label for="floatingEmail">Email address</label>
-            @if ($errors->has('email'))
-                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-            @endif
-        </div>
+    <div class="form-group form-floating mb-3">
+        <input
+            type="password"
+            class="form-control"
+            name="password"
+            value="{{ old('password') }}"
+            placeholder="Password"
+            required="required"
+        />
+        <label for="floatingPassword">Password</label>
+        @if ($errors->has('password'))
+        <span class="text-danger text-left"
+            >{{ $errors->first('password') }}</span
+        >
+        @endif
+    </div>
 
-        <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
-            <label for="floatingName">Username</label>
-            @if ($errors->has('username'))
-                <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-            @endif
-        </div>
+    <div class="form-group form-floating mb-3">
+        <input
+            type="password"
+            class="form-control"
+            name="password_confirmation"
+            value="{{ old('password_confirmation') }}"
+            placeholder="Confirm Password"
+            required="required"
+        />
+        <label for="floatingConfirmPassword">Confirm Password</label>
+        @if ($errors->has('password_confirmation'))
+        <span class="text-danger text-left"
+            >{{ $errors->first('password_confirmation') }}</span
+        >
+        @endif
+    </div>
 
-        <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
-            <label for="floatingPassword">Password</label>
-            @if ($errors->has('password'))
-                <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-            @endif
-        </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
 
-        <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
-            <label for="floatingConfirmPassword">Confirm Password</label>
-            @if ($errors->has('password_confirmation'))
-                <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
-            @endif
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
-
-        @include('auth.partials.copy')
-    </form>
+    @include('auth.partials.copy')
+</form>
 @endsection
 ```
 
 -   ` resources/views/``auth/login.blade.php `
 
-```
-@extends('layouts.auth-master')
+```html
+@extends('layouts.auth-master') @section('content')
+<form method="post" action="{{ route('login.perform') }}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+    <img
+        class="mb-4"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png"
+        alt=""
+        width="72"
+        height="57"
+    />
 
-@section('content')
-    <form method="post" action="{{ route('login.perform') }}">
+    <h1 class="h3 mb-3 fw-normal">Login</h1>
 
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png" alt="" width="72" height="57">
+    @include('layouts.partials.messages')
 
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+    <div class="form-group form-floating mb-3">
+        <input
+            type="text"
+            class="form-control"
+            name="username"
+            value="{{ old('username') }}"
+            placeholder="Username"
+            required="required"
+            autofocus
+        />
+        <label for="floatingName">Email or Username</label>
+        @if ($errors->has('username'))
+        <span class="text-danger text-left"
+            >{{ $errors->first('username') }}</span
+        >
+        @endif
+    </div>
 
-        @include('layouts.partials.messages')
+    <div class="form-group form-floating mb-3">
+        <input
+            type="password"
+            class="form-control"
+            name="password"
+            value="{{ old('password') }}"
+            placeholder="Password"
+            required="required"
+        />
+        <label for="floatingPassword">Password</label>
+        @if ($errors->has('password'))
+        <span class="text-danger text-left"
+            >{{ $errors->first('password') }}</span
+        >
+        @endif
+    </div>
 
-        <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
-            <label for="floatingName">Email or Username</label>
-            @if ($errors->has('username'))
-                <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-            @endif
-        </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 
-        <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
-            <label for="floatingPassword">Password</label>
-            @if ($errors->has('password'))
-                <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-            @endif
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-
-        @include('auth.partials.copy')
-    </form>
+    @include('auth.partials.copy')
+</form>
 @endsection
 ```
 
 -   ` resources/views/``auth/partials/copy.blade.php `
 
-```
+```html
 <p class="mt-5 mb-3 text-muted">&copy; {{ date('Y') }}</p>
 ```
 
 -   `resources/views/home/index.blade.php`
 
-```
-@extends('layouts.app-master')
-
-@section('content')
-    <div class="bg-light p-5 rounded">
-        @auth
-            <h1>Dashboard</h1>
-            <p class="lead">Only authenticated users can access this section.</p>
-            <a class="btn btn-lg btn-primary" href="https://codeanddeploy.com" role="button">View more tutorials here &raquo;</a>
-        @endauth
-
-        @guest
-            <h1>Homepage</h1>
-            <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-        @endguest
-    </div>
+```html
+@extends('layouts.app-master') @section('content')
+<div class="bg-light p-5 rounded">
+    @auth
+    <h1>Dashboard</h1>
+    <p class="lead">Only authenticated users can access this section.</p>
+    <a
+        class="btn btn-lg btn-primary"
+        href="https://codeanddeploy.com"
+        role="button"
+        >View more tutorials here &raquo;</a
+    >
+    @endauth @guest
+    <h1>Homepage</h1>
+    <p class="lead">
+        Your viewing the home page. Please login to view the restricted data.
+    </p>
+    @endguest
+</div>
 @endsection
 ```
 
@@ -691,6 +783,24 @@ public const HOME = '/home';
 
 ```
 public const HOME = '/';
+```
+
+-   `App\Http\Middleware\Authenticate`
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+class Authenticate extends Middleware
+{
+    protected function redirectTo($request)
+    {
+        if (! $request->expectsJson()) {
+            return route('login.show');
+        }
+    }
+}
 ```
 
 #### Step 12: Run The Development Server
