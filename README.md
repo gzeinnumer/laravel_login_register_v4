@@ -394,7 +394,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 #### Step 11: Setup Our Views
 
--   ` resources/views/``layouts/auth-master.blade.php  `
+-   ` resources/views/`---`layouts/auth-master.blade.php  `
 
 ```html
 <!DOCTYPE html>
@@ -443,7 +443,7 @@ Route::group(['middleware' => ['auth']], function () {
 </html>
 ```
 
--   ` resources/views/``layouts/app-master.blade.php `
+-   ` resources/views/`---`layouts/app-master.blade.php `
 
 ```html
 <!DOCTYPE html>
@@ -493,7 +493,7 @@ Route::group(['middleware' => ['auth']], function () {
 </html>
 ```
 
--   ` resources/views/``layouts/partials/navbar.blade.php `
+-   ` resources/views/`---`layouts/partials/navbar.blade.php `
 
 ```html
 <header class="p-3 bg-dark text-white">
@@ -568,7 +568,7 @@ Route::group(['middleware' => ['auth']], function () {
 </header>
 ```
 
--   ` resources/views/``layouts/partials/messages.blade.php `
+-   ` resources/views/`---`layouts/partials/messages.blade.php `
 
 ```html
 @if (isset($errors) && count($errors) > 0)
@@ -594,7 +594,7 @@ Route::group(['middleware' => ['auth']], function () {
 @endif @endif
 ```
 
--   ` resources/views/``auth/register.blade.php `
+-   ` resources/views/`---`auth/register.blade.php `
 
 ```html
 @extends('layouts.auth-master') @section('content')
@@ -685,7 +685,7 @@ Route::group(['middleware' => ['auth']], function () {
 @endsection
 ```
 
--   ` resources/views/``auth/login.blade.php `
+-   ` resources/views/`---`auth/login.blade.php `
 
 ```html
 @extends('layouts.auth-master') @section('content')
@@ -745,7 +745,7 @@ Route::group(['middleware' => ['auth']], function () {
 @endsection
 ```
 
--   ` resources/views/``auth/partials/copy.blade.php `
+-   ` resources/views/`---`auth/partials/copy.blade.php `
 
 ```html
 <p class="mt-5 mb-3 text-muted">&copy; {{ date('Y') }}</p>
