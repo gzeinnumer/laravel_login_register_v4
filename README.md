@@ -38,6 +38,8 @@ Schema::create('users', function (Blueprint $table) {
 
 #### Step 3: Setup Model
 
+- `app/Models/User.php`
+
 ```php
 /**
  * The attributes that are mass assignable.
