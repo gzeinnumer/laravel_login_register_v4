@@ -439,8 +439,12 @@ Route::group(['middleware' => ['auth']], function () {
         <link href="signin.css" rel="stylesheet" />
     </head>
 
-    <body class="text-center">
-        <main class="form-signin">@yield('content')</main>
+    <body class="text-center d-flex align-items-center justify-content-center vh-100">
+        <div class="col-3">
+            <main class="form-signin">
+                @yield('content')
+            </main>
+        </div>
     </body>
 </html>
 ```
